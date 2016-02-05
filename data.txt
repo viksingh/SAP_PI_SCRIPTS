@@ -1,0 +1,5 @@
+host1 99
+host2 99
+google.com 80
+yahoo.com 80
+smh.com.au 80
