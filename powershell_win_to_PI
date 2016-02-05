@@ -1,0 +1,19 @@
+function connectToPI
+{
+Try
+{
+$socket = new-object System.Net.Sockets.TcpClient("pi_port", "pi_port");
+}
+Catch [PSRemotingTransportException] { }
+Finally { }
+if($socket -eq $null)
+{ 
+return "Connection failed from " + $env:computername; 
+}
+else{ return "Connection successful from "  + $env:computername; } 
+}
+
+$Servers = Get-Content F:\arc\server.txt
+foreach ($server in $Servers) { 
+Invoke-Command -ComputerName $server -ScriptBlock ${function:connectToPI}
+}
